@@ -6,6 +6,10 @@ The benchmark is designed to test whether language models can reason over multi-
 
 Many clinical NLP datasets evaluate extraction, single-note summarization, or classification. ClinAuthBench targets a different failure mode: evidence discipline across a dense chart packet where useful evidence is distributed across nursing notes, psychiatric progress notes, rating scales, medication-response notes, group notes, treatment-plan reviews, and discharge-planning documentation.
 
+## Public Dataset
+
+- Hugging Face: (https://huggingface.co/datasets/Shivi1982/clin-auth-bench)
+
 ## What Makes It Different
 
 - **Explicit negative constraints:** every case includes `metadata.gold.do_not_claim`, a set of tempting but unsupported conclusions that models should avoid.
