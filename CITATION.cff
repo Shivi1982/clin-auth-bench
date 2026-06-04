@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use ClinAuthBench, please cite this dataset and repository."
+title: "ClinAuthBench v1: A Synthetic Inpatient Health Authorization Benchmark"
+version: "v1"
+date-released: "2026-06-03"
+authors:
+  - family-names: "Bhatia"
+    given-names: "Shivi"
+license: "Apache-2.0"
+preferred-citation:
+  type: dataset
+  title: "ClinAuthBench v1: A Synthetic Inpatient Health Authorization Benchmark"
+  version: "v1"
+  date-released: "2026-06-03"
+  authors:
+    - family-names: "Bhatia"
+      given-names: "Shivi"
+  license: "CC-BY-4.0"

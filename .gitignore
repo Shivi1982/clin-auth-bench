@@ -1,0 +1,28 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+.env.*
+!.env.example
+
+# Local QA and audit artifacts
+outputs/
+qa_reports/
+audit_results*.json
+
+# Non-release data artifacts
+data/review_batches/
+data/archive/
+data/pilot/
+
+# Local packaging/staging folders
+huggingface_release/
+github_release/
+
+# Build/editor noise
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.vscode/
+.idea/
