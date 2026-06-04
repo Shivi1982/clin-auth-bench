@@ -8,7 +8,7 @@ Many clinical NLP datasets evaluate extraction, single-note summarization, or cl
 
 ## Public Dataset
 
-- Hugging Face: (https://huggingface.co/datasets/Shivi1982/clin-auth-bench)
+- Hugging Face: https://huggingface.co/datasets/Shivi1982/clin-auth-bench
 
 ## What Makes It Different
 
@@ -58,6 +58,8 @@ data/release/synthetic_bh_cases_v1_mdp_180.json
 +-- qa/
 |   +-- qa_gpt_oss.py
 |   +-- Dataset_QA.py
++-- notebooks/
+|   +-- baseline_clinauthbench_v1.ipynb
 +-- README.md
 +-- requirements.txt
 +-- LICENSE
@@ -94,6 +96,16 @@ dataset = load_dataset(
 )
 print(dataset[0]["id"])
 ```
+
+## Baseline Notebook
+
+The first baseline notebook demonstrates how to load the dataset from Hugging Face, inspect one case, build a zero-shot prompt, run a few sample cases manually or through an API placeholder, and compute first-pass metrics:
+
+```text
+notebooks/baseline_clinauthbench_v1.ipynb
+```
+
+The notebook is intentionally simple. It is meant to prove usability and establish a starting evaluation protocol, not to claim benchmark-leading performance.
 
 ## Reproduce The V1 Release File
 
