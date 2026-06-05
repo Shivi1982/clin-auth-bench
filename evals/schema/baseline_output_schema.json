@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "required": [
+    "safe_for_lloc",
+    "expected_los_recommendation",
+    "lower_level_of_care_barriers",
+    "evidence_forms",
+    "rationale"
+  ],
+  "properties": {
+    "safe_for_lloc": {
+      "type": "boolean"
+    },
+    "expected_los_recommendation": {
+      "type": "integer",
+      "enum": [0, 1, 2, 3]
+    },
+    "lower_level_of_care_barriers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_forms": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rationale": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}
