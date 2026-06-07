@@ -1,0 +1,78 @@
+{
+  "name": "ClinAuthBench v1 smoke case set",
+  "purpose": "Fixed stratified smoke-test subset used before full 180-case model evaluation.",
+  "data_path": "data/release/synthetic_bh_cases_v1_mdp_180.json",
+  "selection_rule": "Random stratified selection by metadata.documentation_challenge.",
+  "important_note": "documentation_challenge is used only to select a balanced smoke-test subset. It must not be shown to models during prediction.",
+  "seed": 42,
+  "per_challenge": 3,
+  "n_cases": 12,
+  "selected_challenge_counts": {
+    "missing_invalid_or_stale_evidence": 3,
+    "current_vs_historical_risk": 3,
+    "contradiction": 3,
+    "lower_level_of_care_barrier_reasoning": 3
+  },
+  "cases": [
+    {
+      "case_id": "clin_auth_bench_v1_0005",
+      "case_index": 4,
+      "documentation_challenge": "missing_invalid_or_stale_evidence"
+    },
+    {
+      "case_id": "clin_auth_bench_v1_0006",
+      "case_index": 5,
+      "documentation_challenge": "missing_invalid_or_stale_evidence"
+    },
+    {
+      "case_id": "clin_auth_bench_v1_0010",
+      "case_index": 9,
+      "documentation_challenge": "current_vs_historical_risk"
+    },
+    {
+      "case_id": "clin_auth_bench_v1_0031",
+      "case_index": 30,
+      "documentation_challenge": "contradiction"
+    },
+    {
+      "case_id": "clin_auth_bench_v1_0033",
+      "case_index": 32,
+      "documentation_challenge": "lower_level_of_care_barrier_reasoning"
+    },
+    {
+      "case_id": "clin_auth_bench_v1_0034",
+      "case_index": 33,
+      "documentation_challenge": "current_vs_historical_risk"
+    },
+    {
+      "case_id": "clin_auth_bench_v1_0040",
+      "case_index": 39,
+      "documentation_challenge": "lower_level_of_care_barrier_reasoning"
+    },
+    {
+      "case_id": "clin_auth_bench_v1_0053",
+      "case_index": 52,
+      "documentation_challenge": "contradiction"
+    },
+    {
+      "case_id": "clin_auth_bench_v1_0059",
+      "case_index": 58,
+      "documentation_challenge": "contradiction"
+    },
+    {
+      "case_id": "clin_auth_bench_v1_0150",
+      "case_index": 149,
+      "documentation_challenge": "missing_invalid_or_stale_evidence"
+    },
+    {
+      "case_id": "clin_auth_bench_v1_0155",
+      "case_index": 154,
+      "documentation_challenge": "lower_level_of_care_barrier_reasoning"
+    },
+    {
+      "case_id": "clin_auth_bench_v1_0168",
+      "case_index": 167,
+      "documentation_challenge": "current_vs_historical_risk"
+    }
+  ]
+}
