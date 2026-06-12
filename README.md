@@ -1,10 +1,10 @@
 # ClinAuthBench
 
-ClinAuthBench is a synthetic inpatient health authorization benchmark. V1 focuses on adult inpatient psychiatric authorization over dense 72-hour synthetic documentation packets.
+ClinAuthBench is a synthetic inpatient health authorization benchmark. V1 focuses on adult inpatient psychiatric authorization over dense 72-hour synthetic case documentation.
 
 The benchmark is designed to test whether language models can reason over multi-form inpatient documentation without inventing unsupported authorization claims.
 
-Many clinical NLP datasets evaluate extraction, single-note summarization, or classification. ClinAuthBench targets a different failure mode: evidence discipline across dense multi-form documentation packets where useful evidence is distributed across nursing notes, psychiatric progress notes, rating scales, medication-response notes, group notes, treatment-plan reviews, and discharge-planning documentation.
+Many clinical NLP datasets evaluate extraction, single-note summarization, or classification. ClinAuthBench targets a different failure mode: evidence discipline across dense multi-form case documentation where useful evidence is distributed across nursing notes, psychiatric progress notes, rating scales, medication-response notes, group notes, treatment-plan reviews, and discharge-planning documentation.
 
 ## Public Dataset
 
@@ -13,10 +13,10 @@ Many clinical NLP datasets evaluate extraction, single-note summarization, or cl
 ## What Makes It Different
 
 - **Explicit negative constraints:** every case includes `metadata.gold.do_not_claim`, a set of tempting but unsupported conclusions that models should avoid.
-- **Evidence anchors:** gold labels include supporting form hints, so evaluation can check whether claims are grounded in the packet.
+- **Evidence anchors:** gold labels include supporting form hints, so evaluation can check whether claims are grounded in the case documentation.
 - **Documentation-challenge taxonomy:** v1 labels current-vs-historical risk, contradiction, lower-level-of-care barrier reasoning, and missing/invalid/stale structured evidence.
 - **MDP-style generation:** cases are generated using Markov Decision Process-style synthetic state transitions. Cases 121-180 include probabilistic MDP trajectory metadata for trajectory-aware evaluation.
-- **Dense documentation-packet structure:** each record contains a 72-hour, multi-form synthetic documentation packet rather than a single note.
+- **Dense case-documentation structure:** each record contains a 72-hour, multi-form synthetic case documentation rather than a single note.
 
 V1 does not train a policy. The MDP trajectory is synthetic generation metadata. Future versions may explore learning from trajectory structure and Bayesian optimization for generator calibration, benchmark composition, and scaling.
 
