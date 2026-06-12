@@ -58,6 +58,13 @@ data/release/synthetic_bh_cases_v1_mdp_180.json
 +-- qa/
 |   +-- qa_gpt_oss.py
 |   +-- Dataset_QA.py
++-- evals/
+|   +-- retrieve_hf_outputs.py
+|   +-- prompts/
+|   +-- schema/
+|   +-- config/
+|   +-- parsing.py
+|   +-- metrics.py
 +-- notebooks/
 |   +-- baseline_clinauthbench_v1.ipynb
 +-- README.md
@@ -106,6 +113,53 @@ notebooks/baseline_clinauthbench_v1.ipynb
 ```
 
 The notebook is intentionally simple. It is meant to prove usability and establish a starting evaluation protocol, not to claim benchmark-leading performance.
+
+## Baseline Evaluation Harness
+
+The `evals/` directory contains the v1 baseline evaluation harness. The goal is to run multiple model systems under the same retrieval contract, save raw outputs, parse and validate those outputs locally, and score them against gold labels without exposing hidden metadata to the model.
+
+The 12-case smoke set is a mechanical compatibility check, not the publishable benchmark result. It is used to catch issues such as wrong model IDs, provider/router failures, malformed JSON, truncation, schema mismatches, or output-saving failures before running all 180 cases.
+
+The Hugging Face retrieval script sends only:
+
+- task instructions
+- output JSON schema
+- `case["content"]`
+
+It does not send `metadata.gold`, `evidence_anchors`, `do_not_claim`, `documentation_challenge`, or `documentation_challenge_tags`.
+
+Set your Hugging Face token in a local `.env` file:
+
+```bash
+cp .env.example .env
+# edit .env and set HF_TOKEN=hf_...
+```
+
+Run the 12-case smoke retrieval:
+
+```bash
+python evals/retrieve_hf_outputs.py --model-id openai/gpt-oss-120b
+```
+
+The current Hugging Face smoke retrieval script also supports:
+
+```bash
+python evals/retrieve_hf_outputs.py --model-id meta-llama/Meta-Llama-3-8B-Instruct
+```
+
+Raw model outputs are written to:
+
+```text
+evals/model_outputs/raw/hf/<model_slug>/v1_smoke_outputs.jsonl
+```
+
+The retrieval script intentionally does not parse, validate, or score outputs. Parsing/schema validation and scoring are separate local steps so retrieval failures, parse failures, schema failures, and benchmark accuracy can be reported separately.
+
+### Hugging Face Model Routing Notes
+
+Hugging Face router compatibility is model- and endpoint-dependent. During smoke testing, `openai/gpt-oss-120b` and `meta-llama/Meta-Llama-3-8B-Instruct` worked with the shared `/v1/chat/completions` retrieval path.
+
+The models `google/gemma-4-12B-it` and `google/gemma-4-12B-it-assistant` were rejected by the Hugging Face router as not being chat models for this endpoint. This should be treated as an endpoint/router compatibility issue, not as a ClinAuthBench performance result. A Gemma-family baseline can be added once a compatible hosted chat-completions route or local inference path is available under the same prompt and output schema.
 
 ## Reproduce The V1 Release File
 

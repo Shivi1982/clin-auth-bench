@@ -13,7 +13,7 @@
     },
     "expected_los_recommendation": {
       "type": "integer",
-      "enum": [0, 1, 2, 3]
+      "enum": [0, 1, 2, 3, 4]
     },
     "lower_level_of_care_barriers": {
       "type": "array",

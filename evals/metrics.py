@@ -10,16 +10,17 @@ def normalize_los_days(value):
     - "0 days"
     - "0_days"
     - "3 days"
-    into integer 0,1,2,3.
+    - "4 days"
+    into integer 0,1,2,3,4.
     """
     if value is None:
         return None
 
     if isinstance(value, int):
-        return value if value in {0, 1, 2, 3} else None
+        return value if value in {0, 1, 2, 3, 4} else None
 
     text = str(value).strip().lower()
-    match = re.search(r"\b([0-3])\b", text)
+    match = re.search(r"\b([0-4])\b", text)
     if match:
         return int(match.group(1))
 
