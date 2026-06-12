@@ -82,6 +82,25 @@ data/release/synthetic_bh_cases_v1_mdp_180.json
 
 Local review batches, archive files, pilot files, audit result JSONs, generated QA outputs, raw/scored model-output JSONL files under `evals/model_outputs/`, caches, and `.DS_Store` files are intentionally excluded from the public repository. Consolidated evaluation summaries under `evals/results/` are included.
 
+## Installation
+
+Use Python 3.10 or newer.
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+For live model-output retrieval, copy the example environment file and add the API keys you intend to use:
+
+```bash
+cp .env.example .env
+```
+
+The scoring and summarization scripts do not require API keys. API keys are only needed for live model-output retrieval through Hugging Face, OpenAI, or Anthropic.
+
+
 ## Quick Start
 
 Load the JSON directly:
@@ -169,6 +188,18 @@ OpenAI-hosted retrieval is available through the local evaluation harness:
 ```bash
 python evals/retrieve_openai_outputs.py --model-id gpt-5.2
 ```
+
+### Supported Retrieval Routes
+
+Three retrieval scripts share the same blind retrieval contract (task instructions, output schema, and `case["content"]` only). They differ only in the model provider and the API key they read from `.env`:
+
+| Script | Provider | API key | Example model id |
+| --- | --- | --- | --- |
+| `evals/retrieve_hf_outputs.py` | Hugging Face router | `HF_TOKEN` | `openai/gpt-oss-120b`, `meta-llama/Meta-Llama-3-8B-Instruct` |
+| `evals/retrieve_openai_outputs.py` | OpenAI | `OPENAI_API_KEY` | `gpt-5.2` |
+| `evals/retrieve_claude_outputs.py` | Anthropic | `ANTHROPIC_API_KEY` | `claude-sonnet-4-6` |
+
+All three write raw outputs to `evals/model_outputs/raw/<source>/<model_slug>/` and accept the same `--case-config`, `--case-set-name`, `--expected-case-count`, and `--output-path` arguments shown in the full-180 example below. New users should start with `retrieve_hf_outputs.py` on the 12-case smoke set before attempting the full-180 run.
 
 Score any raw output JSONL locally:
 
