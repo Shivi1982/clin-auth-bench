@@ -46,6 +46,7 @@ data/release/synthetic_bh_cases_v1_mdp_180.json
 +-- docs/
 |   +-- schema.md
 |   +-- release_notes.md
+|   +-- model_routing_notes.md
 |   +-- scaling_plan.md
 +-- generators/
 |   +-- mdp_case_builder.py
@@ -155,11 +156,26 @@ evals/model_outputs/raw/hf/<model_slug>/v1_smoke_outputs.jsonl
 
 The retrieval script intentionally does not parse, validate, or score outputs. Parsing/schema validation and scoring are separate local steps so retrieval failures, parse failures, schema failures, and benchmark accuracy can be reported separately.
 
+OpenAI-hosted retrieval is available through the local evaluation harness:
+
+```bash
+python evals/retrieve_openai_outputs.py --model-id gpt-5.2
+```
+
+Score any raw output JSONL locally:
+
+```bash
+python evals/score_model_outputs.py \
+  --raw-output-path evals/model_outputs/raw/<source>/<model_slug>/v1_smoke_outputs.jsonl
+```
+
 ### Hugging Face Model Routing Notes
 
 Hugging Face router compatibility is model- and endpoint-dependent. During smoke testing, `openai/gpt-oss-120b` and `meta-llama/Meta-Llama-3-8B-Instruct` worked with the shared `/v1/chat/completions` retrieval path.
 
-The models `google/gemma-4-12B-it` and `google/gemma-4-12B-it-assistant` were rejected by the Hugging Face router as not being chat models for this endpoint. This should be treated as an endpoint/router compatibility issue, not as a ClinAuthBench performance result. A Gemma-family baseline can be added once a compatible hosted chat-completions route or local inference path is available under the same prompt and output schema.
+The Gemma, NVIDIA Nemotron, and Mixtral routes tested during setup could not be executed under the same Hugging Face chat-completions endpoint in the tested environment. These are provider/router compatibility exclusions, not ClinAuthBench performance results.
+
+See `docs/model_routing_notes.md` for the standalone route log and recommended reporting language.
 
 ## Reproduce The V1 Release File
 

@@ -1,0 +1,209 @@
+{
+  "record_type": "clinauthbench_v1_full_180_results_summary",
+  "created_utc": "2026-06-12T03:30:22.156068+00:00",
+  "n_models": 3,
+  "metric_definition": {
+    "primary_denominator": "all expected cases",
+    "failure_policy": "retrieval, parse, and schema failures count as incorrect",
+    "valid_only_metrics": "diagnostic only"
+  },
+  "results": [
+    {
+      "model_label": "GPT-OSS 120B",
+      "model_id": "openai/gpt-oss-120b",
+      "source": "huggingface",
+      "case_set": "v1_full_180_cases",
+      "metrics_path": "evals/model_outputs/scored/hf/openai__gpt-oss-120b/v1_full_180_metrics.json",
+      "parse_schema_summary_path": "evals/model_outputs/scored/hf/openai__gpt-oss-120b/v1_full_180_parse_schema_summary.json",
+      "n_cases": 180,
+      "n_raw_jsonl_rows": 180,
+      "n_retrieval_ok": 180,
+      "n_valid_json": 180,
+      "n_schema_valid": 180,
+      "retrieval_ok_rate": 1.0,
+      "valid_json_rate": 1.0,
+      "schema_valid_rate": 1.0,
+      "safe_for_lloc_accuracy": 0.9333333333333333,
+      "expected_los_exact_match": 0.5166666666666667,
+      "safe_for_lloc_accuracy_schema_valid_only": 0.9333333333333333,
+      "expected_los_exact_match_schema_valid_only": 0.5166666666666667,
+      "failure_counts_by_type": {
+        "none": 180
+      },
+      "n_bad_jsonl_lines": 0,
+      "n_duplicate_case_ids_in_raw_jsonl": 0,
+      "missing_case_ids": [],
+      "extra_case_ids_in_raw_jsonl": [],
+      "by_documentation_challenge": {
+        "contradiction": {
+          "n_cases": 22,
+          "n_schema_valid": 22,
+          "denominator_note": "Primary metrics use all expected cases; retrieval, JSON, and schema failures count as incorrect.",
+          "safe_for_lloc_accuracy": 1.0,
+          "expected_los_exact_match": 0.5909090909090909,
+          "safe_for_lloc_accuracy_schema_valid_only": 1.0,
+          "expected_los_exact_match_schema_valid_only": 0.5909090909090909
+        },
+        "current_vs_historical_risk": {
+          "n_cases": 45,
+          "n_schema_valid": 45,
+          "denominator_note": "Primary metrics use all expected cases; retrieval, JSON, and schema failures count as incorrect.",
+          "safe_for_lloc_accuracy": 0.7777777777777778,
+          "expected_los_exact_match": 0.4666666666666667,
+          "safe_for_lloc_accuracy_schema_valid_only": 0.7777777777777778,
+          "expected_los_exact_match_schema_valid_only": 0.4666666666666667
+        },
+        "lower_level_of_care_barrier_reasoning": {
+          "n_cases": 81,
+          "n_schema_valid": 81,
+          "denominator_note": "Primary metrics use all expected cases; retrieval, JSON, and schema failures count as incorrect.",
+          "safe_for_lloc_accuracy": 0.9753086419753086,
+          "expected_los_exact_match": 0.4444444444444444,
+          "safe_for_lloc_accuracy_schema_valid_only": 0.9753086419753086,
+          "expected_los_exact_match_schema_valid_only": 0.4444444444444444
+        },
+        "missing_invalid_or_stale_evidence": {
+          "n_cases": 32,
+          "n_schema_valid": 32,
+          "denominator_note": "Primary metrics use all expected cases; retrieval, JSON, and schema failures count as incorrect.",
+          "safe_for_lloc_accuracy": 1.0,
+          "expected_los_exact_match": 0.71875,
+          "safe_for_lloc_accuracy_schema_valid_only": 1.0,
+          "expected_los_exact_match_schema_valid_only": 0.71875
+        }
+      }
+    },
+    {
+      "model_label": "GPT-5.2",
+      "model_id": "gpt-5.2",
+      "source": "openai",
+      "case_set": "v1_full_180_cases",
+      "metrics_path": "evals/model_outputs/scored/openai/gpt-5.2/v1_full_180_metrics.json",
+      "parse_schema_summary_path": "evals/model_outputs/scored/openai/gpt-5.2/v1_full_180_parse_schema_summary.json",
+      "n_cases": 180,
+      "n_raw_jsonl_rows": 180,
+      "n_retrieval_ok": 180,
+      "n_valid_json": 180,
+      "n_schema_valid": 180,
+      "retrieval_ok_rate": 1.0,
+      "valid_json_rate": 1.0,
+      "schema_valid_rate": 1.0,
+      "safe_for_lloc_accuracy": 0.65,
+      "expected_los_exact_match": 0.3388888888888889,
+      "safe_for_lloc_accuracy_schema_valid_only": 0.65,
+      "expected_los_exact_match_schema_valid_only": 0.3388888888888889,
+      "failure_counts_by_type": {
+        "none": 180
+      },
+      "n_bad_jsonl_lines": 0,
+      "n_duplicate_case_ids_in_raw_jsonl": 0,
+      "missing_case_ids": [],
+      "extra_case_ids_in_raw_jsonl": [],
+      "by_documentation_challenge": {
+        "contradiction": {
+          "n_cases": 22,
+          "n_schema_valid": 22,
+          "denominator_note": "Primary metrics use all expected cases; retrieval, JSON, and schema failures count as incorrect.",
+          "safe_for_lloc_accuracy": 1.0,
+          "expected_los_exact_match": 0.5454545454545454,
+          "safe_for_lloc_accuracy_schema_valid_only": 1.0,
+          "expected_los_exact_match_schema_valid_only": 0.5454545454545454
+        },
+        "current_vs_historical_risk": {
+          "n_cases": 45,
+          "n_schema_valid": 45,
+          "denominator_note": "Primary metrics use all expected cases; retrieval, JSON, and schema failures count as incorrect.",
+          "safe_for_lloc_accuracy": 0.13333333333333333,
+          "expected_los_exact_match": 0.13333333333333333,
+          "safe_for_lloc_accuracy_schema_valid_only": 0.13333333333333333,
+          "expected_los_exact_match_schema_valid_only": 0.13333333333333333
+        },
+        "lower_level_of_care_barrier_reasoning": {
+          "n_cases": 81,
+          "n_schema_valid": 81,
+          "denominator_note": "Primary metrics use all expected cases; retrieval, JSON, and schema failures count as incorrect.",
+          "safe_for_lloc_accuracy": 0.7407407407407407,
+          "expected_los_exact_match": 0.4074074074074074,
+          "safe_for_lloc_accuracy_schema_valid_only": 0.7407407407407407,
+          "expected_los_exact_match_schema_valid_only": 0.4074074074074074
+        },
+        "missing_invalid_or_stale_evidence": {
+          "n_cases": 32,
+          "n_schema_valid": 32,
+          "denominator_note": "Primary metrics use all expected cases; retrieval, JSON, and schema failures count as incorrect.",
+          "safe_for_lloc_accuracy": 0.90625,
+          "expected_los_exact_match": 0.3125,
+          "safe_for_lloc_accuracy_schema_valid_only": 0.90625,
+          "expected_los_exact_match_schema_valid_only": 0.3125
+        }
+      }
+    },
+    {
+      "model_label": "Llama 3 8B Instruct",
+      "model_id": "meta-llama/Meta-Llama-3-8B-Instruct",
+      "source": "huggingface",
+      "case_set": "v1_full_180_cases",
+      "metrics_path": "evals/model_outputs/scored/hf/meta-llama__Meta-Llama-3-8B-Instruct/v1_full_180_metrics.json",
+      "parse_schema_summary_path": "evals/model_outputs/scored/hf/meta-llama__Meta-Llama-3-8B-Instruct/v1_full_180_parse_schema_summary.json",
+      "n_cases": 180,
+      "n_raw_jsonl_rows": 180,
+      "n_retrieval_ok": 180,
+      "n_valid_json": 78,
+      "n_schema_valid": 40,
+      "retrieval_ok_rate": 1.0,
+      "valid_json_rate": 0.43333333333333335,
+      "schema_valid_rate": 0.2222222222222222,
+      "safe_for_lloc_accuracy": 0.17222222222222222,
+      "expected_los_exact_match": 0.022222222222222223,
+      "safe_for_lloc_accuracy_schema_valid_only": 0.775,
+      "expected_los_exact_match_schema_valid_only": 0.1,
+      "failure_counts_by_type": {
+        "json_parse_error": 102,
+        "none": 40,
+        "schema_validation_error": 38
+      },
+      "n_bad_jsonl_lines": 0,
+      "n_duplicate_case_ids_in_raw_jsonl": 0,
+      "missing_case_ids": [],
+      "extra_case_ids_in_raw_jsonl": [],
+      "by_documentation_challenge": {
+        "contradiction": {
+          "n_cases": 22,
+          "n_schema_valid": 8,
+          "denominator_note": "Primary metrics use all expected cases; retrieval, JSON, and schema failures count as incorrect.",
+          "safe_for_lloc_accuracy": 0.36363636363636365,
+          "expected_los_exact_match": 0.0,
+          "safe_for_lloc_accuracy_schema_valid_only": 1.0,
+          "expected_los_exact_match_schema_valid_only": 0.0
+        },
+        "current_vs_historical_risk": {
+          "n_cases": 45,
+          "n_schema_valid": 6,
+          "denominator_note": "Primary metrics use all expected cases; retrieval, JSON, and schema failures count as incorrect.",
+          "safe_for_lloc_accuracy": 0.022222222222222223,
+          "expected_los_exact_match": 0.0,
+          "safe_for_lloc_accuracy_schema_valid_only": 0.16666666666666666,
+          "expected_los_exact_match_schema_valid_only": 0.0
+        },
+        "lower_level_of_care_barrier_reasoning": {
+          "n_cases": 81,
+          "n_schema_valid": 13,
+          "denominator_note": "Primary metrics use all expected cases; retrieval, JSON, and schema failures count as incorrect.",
+          "safe_for_lloc_accuracy": 0.12345679012345678,
+          "expected_los_exact_match": 0.04938271604938271,
+          "safe_for_lloc_accuracy_schema_valid_only": 0.7692307692307693,
+          "expected_los_exact_match_schema_valid_only": 0.3076923076923077
+        },
+        "missing_invalid_or_stale_evidence": {
+          "n_cases": 32,
+          "n_schema_valid": 13,
+          "denominator_note": "Primary metrics use all expected cases; retrieval, JSON, and schema failures count as incorrect.",
+          "safe_for_lloc_accuracy": 0.375,
+          "expected_los_exact_match": 0.0,
+          "safe_for_lloc_accuracy_schema_valid_only": 0.9230769230769231,
+          "expected_los_exact_match_schema_valid_only": 0.0
+        }
+      }
+    }
+  ]
+}

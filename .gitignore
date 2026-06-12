@@ -10,6 +10,7 @@ __pycache__/
 outputs/
 qa_reports/
 audit_results*.json
+evals/model_outputs/
 
 # Non-release data artifacts
 data/review_batches/
