@@ -1,10 +1,10 @@
 # ClinAuthBench
 
-ClinAuthBench is a synthetic inpatient health authorization benchmark. V1 focuses on adult inpatient psychiatric authorization over dense 72-hour chart packets.
+ClinAuthBench is a synthetic inpatient health authorization benchmark. V1 focuses on adult inpatient psychiatric authorization over dense 72-hour synthetic documentation packets.
 
 The benchmark is designed to test whether language models can reason over multi-form inpatient documentation without inventing unsupported authorization claims.
 
-Many clinical NLP datasets evaluate extraction, single-note summarization, or classification. ClinAuthBench targets a different failure mode: evidence discipline across a dense chart packet where useful evidence is distributed across nursing notes, psychiatric progress notes, rating scales, medication-response notes, group notes, treatment-plan reviews, and discharge-planning documentation.
+Many clinical NLP datasets evaluate extraction, single-note summarization, or classification. ClinAuthBench targets a different failure mode: evidence discipline across dense multi-form documentation packets where useful evidence is distributed across nursing notes, psychiatric progress notes, rating scales, medication-response notes, group notes, treatment-plan reviews, and discharge-planning documentation.
 
 ## Public Dataset
 
@@ -16,7 +16,7 @@ Many clinical NLP datasets evaluate extraction, single-note summarization, or cl
 - **Evidence anchors:** gold labels include supporting form hints, so evaluation can check whether claims are grounded in the packet.
 - **Documentation-challenge taxonomy:** v1 labels current-vs-historical risk, contradiction, lower-level-of-care barrier reasoning, and missing/invalid/stale structured evidence.
 - **MDP-style generation:** cases are generated using Markov Decision Process-style synthetic state transitions. Cases 121-180 include probabilistic MDP trajectory metadata for trajectory-aware evaluation.
-- **Dense packet structure:** each record contains a 72-hour, multi-form chart packet rather than a single note.
+- **Dense documentation-packet structure:** each record contains a 72-hour, multi-form synthetic documentation packet rather than a single note.
 
 V1 does not train a policy. The MDP trajectory is synthetic generation metadata. Future versions may explore learning from trajectory structure and Bayesian optimization for generator calibration, benchmark composition, and scaling.
 
@@ -61,9 +61,14 @@ data/release/synthetic_bh_cases_v1_mdp_180.json
 |   +-- Dataset_QA.py
 +-- evals/
 |   +-- retrieve_hf_outputs.py
+|   +-- retrieve_openai_outputs.py
+|   +-- retrieve_claude_outputs.py
+|   +-- score_model_outputs.py
 |   +-- prompts/
 |   +-- schema/
 |   +-- config/
+|   +-- results/
+|   +-- scripts/
 |   +-- parsing.py
 |   +-- metrics.py
 +-- notebooks/
@@ -75,7 +80,7 @@ data/release/synthetic_bh_cases_v1_mdp_180.json
 +-- CITATION.cff
 ```
 
-Local review batches, archive files, pilot files, audit result JSONs, generated QA outputs, caches, and `.DS_Store` files are intentionally excluded from the public repository.
+Local review batches, archive files, pilot files, audit result JSONs, generated QA outputs, raw/scored model-output JSONL files under `evals/model_outputs/`, caches, and `.DS_Store` files are intentionally excluded from the public repository. Consolidated evaluation summaries under `evals/results/` are included.
 
 ## Quick Start
 
@@ -129,11 +134,14 @@ The Hugging Face retrieval script sends only:
 
 It does not send `metadata.gold`, `evidence_anchors`, `do_not_claim`, `documentation_challenge`, or `documentation_challenge_tags`.
 
-Set your Hugging Face token in a local `.env` file:
+Set local tokens in a `.env` file:
 
 ```bash
 cp .env.example .env
-# edit .env and set HF_TOKEN=hf_...
+# edit .env and set whichever tokens you need:
+# HF_TOKEN=hf_...
+# OPENAI_API_KEY=sk-...
+# ANTHROPIC_API_KEY=sk-ant-...  # optional
 ```
 
 Run the 12-case smoke retrieval:
@@ -168,6 +176,47 @@ Score any raw output JSONL locally:
 python evals/score_model_outputs.py \
   --raw-output-path evals/model_outputs/raw/<source>/<model_slug>/v1_smoke_outputs.jsonl
 ```
+
+For the full 180-case evaluation, use the full case config and run name:
+
+```bash
+python evals/retrieve_hf_outputs.py \
+  --model-id openai/gpt-oss-120b \
+  --case-config evals/config/v1_full_180_cases.json \
+  --case-set-name v1_full_180_cases \
+  --expected-case-count 180 \
+  --output-path evals/model_outputs/raw/hf/openai__gpt-oss-120b/v1_full_180_outputs.jsonl
+
+python evals/score_model_outputs.py \
+  --raw-output-path evals/model_outputs/raw/hf/openai__gpt-oss-120b/v1_full_180_outputs.jsonl \
+  --case-config evals/config/v1_full_180_cases.json \
+  --case-set-name v1_full_180_cases \
+  --run-name v1_full_180 \
+  --expected-case-count 180
+```
+
+Use the same full-180 arguments with `retrieve_openai_outputs.py` or another supported retrieval script for additional model routes.
+
+### Full-180 evaluation results
+
+The full-180 baseline evaluation for completed model routes was run on all 180 synthetic cases using the same blind retrieval contract and local scoring pipeline.
+
+Primary metrics use all expected cases as the denominator. Retrieval failures, JSON parsing failures, and schema-validation failures count as incorrect. Valid-only metrics are reported only as diagnostics.
+
+| Model               |       Source | Cases | Valid JSON | Schema valid | Safe-for-LLOC accuracy | LOS exact match | Safe valid-only | LOS valid-only | Notes                                                                             |
+| ------------------- | -----------: | ----: | ---------: | -----------: | ---------------------: | --------------: | --------------: | -------------: | --------------------------------------------------------------------------------- |
+| GPT-OSS 120B        | Hugging Face |   180 |    180/180 |      180/180 |                  93.3% |           51.7% |           93.3% |          51.7% | Full schema-valid run                                                             |
+| GPT-5.2             |       OpenAI |   180 |    180/180 |      180/180 |                  65.0% |           33.9% |           65.0% |          33.9% | Full schema-valid run                                                             |
+| Llama 3 8B Instruct | Hugging Face |   180 |     78/180 |       40/180 |                  17.2% |            2.2% |           77.5% |          10.0% | Diagnostic smaller OSS model; many outputs failed the strict JSON/schema contract |
+
+See the consolidated result artifact:
+
+```text
+evals/results/v1_full_180_summary.md
+```
+
+These results should not be interpreted as clinical performance, payer-policy performance, or real-world authorization safety.
+
 
 ### Hugging Face Model Routing Notes
 
