@@ -6,6 +6,8 @@ The benchmark is designed to test whether language models can reason over multi-
 
 Many clinical NLP datasets evaluate extraction, single-note summarization, or classification. ClinAuthBench targets a different failure mode: evidence discipline across dense multi-form case documentation where useful evidence is distributed across nursing notes, psychiatric progress notes, rating scales, medication-response notes, group notes, treatment-plan reviews, and discharge-planning documentation.
 
+Part of ongoing research on clinical LLM evaluation — [shivi1982.github.io](https://shivi1982.github.io)
+
 ## Public Dataset
 
 - Hugging Face: https://huggingface.co/datasets/Shivi1982/clin-auth-bench
