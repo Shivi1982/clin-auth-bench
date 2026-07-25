@@ -1,18 +1,40 @@
 cff-version: 1.2.0
 message: "If you use ClinAuthBench, please cite this dataset and repository."
 title: "ClinAuthBench v1: A Synthetic Inpatient Health Authorization Benchmark"
-version: "v1"
-date-released: "2026-06-03"
+abstract: >-
+  ClinAuthBench is a synthetic inpatient health authorization benchmark. V1
+  covers adult inpatient psychiatric authorization over dense 72-hour synthetic
+  case documentation, testing whether language models can reason across
+  multi-form documentation without asserting unsupported authorization claims.
+  Each of the 180 cases carries gold labels, evidence anchors, and an explicit
+  set of tempting but unsupported conclusions a model should not claim.
+type: software
+version: 1.0.0
+date-released: "2026-07-23"
+license: Apache-2.0
+repository-code: "https://github.com/Shivi1982/clin-auth-bench"
+url: "https://shivi1982.github.io"
 authors:
-  - family-names: "Bhatia"
-    given-names: "Shivi"
-license: "Apache-2.0"
+  - family-names: Bhatia
+    given-names: Shivi
+    orcid: "https://orcid.org/0009-0003-5845-2405"
+keywords:
+  - clinical NLP
+  - benchmark
+  - synthetic data
+  - large language models
+  - evaluation
+  - prior authorization
+  - behavioral health
+  - evidence grounding
 preferred-citation:
   type: dataset
   title: "ClinAuthBench v1: A Synthetic Inpatient Health Authorization Benchmark"
-  version: "v1"
+  version: v1
   date-released: "2026-06-03"
+  license: CC-BY-4.0
+  url: "https://huggingface.co/datasets/Shivi1982/clin-auth-bench"
   authors:
-    - family-names: "Bhatia"
-      given-names: "Shivi"
-  license: "CC-BY-4.0"
+    - family-names: Bhatia
+      given-names: Shivi
+      orcid: "https://orcid.org/0009-0003-5845-2405"

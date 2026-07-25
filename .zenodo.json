@@ -1,0 +1,38 @@
+{
+  "title": "ClinAuthBench v1: A Synthetic Inpatient Health Authorization Benchmark",
+  "upload_type": "dataset",
+  "version": "1.0.0",
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "creators": [
+    {
+      "name": "Bhatia, Shivi",
+      "orcid": "0009-0003-5845-2405",
+      "affiliation": "Independent Researcher"
+    }
+  ],
+  "description": "<p>ClinAuthBench is a synthetic inpatient health authorization benchmark. V1 covers adult inpatient psychiatric authorization over dense 72-hour synthetic case documentation, testing whether language models can reason across multi-form documentation without asserting unsupported authorization claims.</p><p>Each of the 180 cases carries gold labels, evidence anchors, and an explicit set of tempting but unsupported conclusions a model should not claim (<code>metadata.gold.do_not_claim</code>). The v1 taxonomy labels current-versus-historical risk, contradiction, lower-level-of-care barrier reasoning, and missing, invalid, or stale structured evidence. Cases are generated using Markov Decision Process-style synthetic state transitions; cases 121-180 include probabilistic trajectory metadata.</p><p><strong>Composition:</strong> 180 synthetic cases &mdash; 108 continued-stay, 72 safe or lower-level-of-care-ready, 22 contradiction or conflicting-documentation. 120 rule-based, 60 probabilistic.</p><p><strong>Privacy and affiliation:</strong> ClinAuthBench is fully synthetic. It is not derived from, affiliated with, endorsed by, or representative of any healthcare provider, payer, employer, customer, EHR vendor, or real patient population. It contains no real patient records, chart text, PHI, or source-system identifiers. Results obtained on this benchmark should not be interpreted as clinical performance, payer-policy performance, or real-world authorization safety.</p><p><strong>Licensing:</strong> the dataset file under <code>data/release/</code> is licensed CC BY 4.0, which is the license recorded on this deposit. Code in the repository is licensed Apache-2.0.</p>",
+  "notes": "Dual-licensed source repository: dataset under CC BY 4.0, code under Apache-2.0. The license field on this deposit records the dataset license, since the dataset is the citable artifact.",
+  "keywords": [
+    "clinical NLP",
+    "benchmark",
+    "synthetic data",
+    "large language models",
+    "evaluation",
+    "prior authorization",
+    "behavioral health",
+    "evidence grounding"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://huggingface.co/datasets/Shivi1982/clin-auth-bench",
+      "relation": "isIdenticalTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://shivi1982.github.io",
+      "relation": "isDocumentedBy",
+      "scheme": "url"
+    }
+  ]
+}
