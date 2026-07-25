@@ -10,7 +10,7 @@ abstract: >-
   set of tempting but unsupported conclusions a model should not claim.
 type: software
 version: 1.0.0
-date-released: "2026-07-23"
+date-released: "2026-07-25"
 license: Apache-2.0
 repository-code: "https://github.com/Shivi1982/clin-auth-bench"
 url: "https://shivi1982.github.io"
